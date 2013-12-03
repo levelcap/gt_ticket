@@ -52,8 +52,8 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
             	if($thisclient && $thisclient->isValid()) { 
                 	echo $thisclient->getPassengerName();
             	} else { ?>
-                	<input id="PassengerName" type="text" name="PassengerName" size="40" value="<?php echo $info['PassengerName']; ?>">
-                	<font class="error">*&nbsp;<?php echo $info['PassengerName']; ?></font>
+                	<input id="PassengerName1" type="text" name="PassengerName" size="40" value="<?php echo $info['PassengerName1']; ?>">
+                	<font class="error">*&nbsp;<?php echo $info['PassengerName1']; ?></font>
             <?php
             } ?>
         </td>
