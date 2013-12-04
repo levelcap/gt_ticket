@@ -2,21 +2,14 @@
 if(!defined('OSTCLIENTINC')) die('Access Denied!');
 $info=array();
 if($thisclient && $thisclient->isValid()) {
-<<<<<<< HEAD
     $info=array('order'=>$thisclient->getOrder(),
                 'driverName'=>$thisclient->getDriverName(),
                 'passengerName'=>$thisclient->getPassengerName(),
-=======
-    $info=array('name'=>$thisclient->getName(),
-                'email'=>$thisclient->getEmail(),
-                'phone'=>$thisclient->getPhone(),
->>>>>>> 88a6ca25f6401b64c2027d3db941c75895173c8f
                 'phone_ext'=>$thisclient->getPhoneExt());
 }
 
 $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
 ?>
-<<<<<<< HEAD
 <h1>Open a Driver Complaint</h1>
 <p>Please fill in the form below to open a new complaint.</p>
 <form id="complaintForm" method="post" action="driver_complaint.php" enctype="multipart/form-data">
@@ -35,29 +28,11 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
                 <font class="error">*&nbsp;<?php echo $errors['order_id']; ?></font>
            
             
-=======
-<h1>Open a New Ticket</h1>
-<p>Please fill in the form below to open a new ticket.</p>
-<form id="ticketForm" method="post" action="drive_complaint.php" enctype="multipart/form-data">
-  <?php csrf_token(); ?>
-  <input type="hidden" name="a" value="driver_complaint">
-  <table width="800" cellpadding="1" cellspacing="0" border="0">
-    <tr>
-        <th class="required" width="160">Full Name:</th>
-        <td>
-            <?php
-            if($thisclient && $thisclient->isValid()) {
-                echo $thisclient->getName();
-            } else { ?>
-                <input id="name" type="text" name="name" size="40" value="<?php echo $info['name']; ?>">
-                <font class="error">*&nbsp;<?php echo $errors['name']; ?></font>
->>>>>>> 88a6ca25f6401b64c2027d3db941c75895173c8f
             <?php
             } ?>
         </td>
     </tr>
     <tr>
-<<<<<<< HEAD
         <th class="required" width="160">Diver Name/Number:</th>
         <td>
             <?php
@@ -66,22 +41,11 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
             } else { ?>
                 <input id="driver_name" type="text" name="driver_name" size="40" value="<?php echo $info['driver_name']; ?>">
                 <font class="error">*&nbsp;<?php echo $errors['driver_name']; ?></font>
-=======
-        <th class="required" width="160">Email Address:</th>
-        <td>
-            <?php
-            if($thisclient && $thisclient->isValid()) { 
-                echo $thisclient->getEmail();
-            } else { ?>
-                <input id="email" type="text" name="email" size="40" value="<?php echo $info['email']; ?>">
-                <font class="error">*&nbsp;<?php echo $errors['email']; ?></font>
->>>>>>> 88a6ca25f6401b64c2027d3db941c75895173c8f
             <?php
             } ?>
         </td>
     </tr>
     <tr>
-<<<<<<< HEAD
         <th class="required" width="160">Passenger Name:</th>
         <td>
             <?php
@@ -113,64 +77,6 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
     <?php if(($cfg->allowOnlineAttachments() && !$cfg->allowAttachmentsOnlogin())
             || ($cfg->allowAttachmentsOnlogin() && ($thisclient && $thisclient->isValid()))) { ?>
     
-=======
-        <th>Telephone:</th>
-        <td>
-
-            <input id="phone" type="text" name="phone" size="24" value="<?php echo $info['phone']; ?>">
-            <label for="ext" class="inline">Ext.:</label>
-            <input id="ext" type="text" name="phone_ext" size="3" value="<?php echo $info['phone_ext']; ?>">
-            <font class="error">&nbsp;<?php echo $errors['phone']; ?>&nbsp;&nbsp;<?php echo $errors['phone_ext']; ?></font>
-        </td>   
-    </tr>
-    <tr><td colspan=2>&nbsp;</td></tr>
-    <tr>
-        <td class="required">Help Topic:</td>
-        <td>
-            <select id="topicId" name="topicId">
-                <option value="" selected="selected">&mdash; Select a Help Topic &mdash;</option>
-                <?php
-                if($topics=Topic::getPublicHelpTopics()) {
-                    foreach($topics as $id =>$name) {
-                        if($id!=3) {
-                            echo sprintf('<option value="%d" %s>%s</option>',
-                                $id, ($info['topicId']==$id)?'selected="selected"':'', $name);
-                        }
-                    }
-                } else { ?>
-                    <option value="0">General Inquiry</option>
-                <?php
-                } ?>
-            </select>
-            <font class="error">*&nbsp;<?php echo $errors['topicId']; ?></font>
-        </td>
-    </tr>
-    <tr>
-        <td class="required">Subject:</td>
-        <td>
-            <input id="subject" type="text" name="subject" size="40" value="<?php echo $info['subject']; ?>">
-            <font class="error">*&nbsp;<?php echo $errors['subject']; ?></font>
-        </td>
-    </tr>
-    <tr>
-        <td class="required">Message:</td>
-        <td>
-            <div><em>Please provide as much detail as possible so we can best assist you.</em> <font class="error">*&nbsp;<?php echo $errors['message']; ?></font></div>
-            <textarea id="message" cols="60" rows="8" name="message"><?php echo $info['message']; ?></textarea>
-        </td>
-    </tr>
-
-    <?php if(($cfg->allowOnlineAttachments() && !$cfg->allowAttachmentsOnlogin())
-            || ($cfg->allowAttachmentsOnlogin() && ($thisclient && $thisclient->isValid()))) { ?>
-    <tr>
-        <td>Attachments:</td>
-        <td>
-            <div class="uploads"></div><br>
-            <input type="file" class="multifile" name="attachments[]" id="attachments" size="30" value="" />
-            <font class="error">&nbsp;<?php echo $errors['attachments']; ?></font>
-        </td>
-    </tr>
->>>>>>> 88a6ca25f6401b64c2027d3db941c75895173c8f
     <tr><td colspan=2>&nbsp;</td></tr>
     <?php } ?>
     <?php
@@ -214,15 +120,10 @@ $info=($_POST && $errors)?Format::htmlchars($_POST):$info;
     } ?>
     <tr><td colspan=2>&nbsp;</td></tr>
   </table>
-<<<<<<< HEAD
   
   
   <p style="padding-left:150px;">
         <input type="submit" value="Create Complaint">
-=======
-  <p style="padding-left:150px;">
-        <input type="submit" value="Create Ticket">
->>>>>>> 88a6ca25f6401b64c2027d3db941c75895173c8f
         <input type="reset" value="Reset">
         <input type="button" value="Cancel" onClick='window.location.href="index.php"'>
   </p>
